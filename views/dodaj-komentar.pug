@@ -1,0 +1,10 @@
+html 
+    head 
+        title Dodaj komentar 
+    body 
+        form.komentar-form(action="/komentari/dodaj-komentar", method="POST")
+            .form-control 
+                label(for="komentar") Komentar 
+                input(type="text", name="komentar", id="komentar")
+
+            button.btn(type="submit") Komentiraj 

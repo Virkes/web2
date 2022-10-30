@@ -1,0 +1,26 @@
+html 
+    head 
+        title Dodaj utakmicu 
+    body 
+        form.komentar-form(action="/utakmice/dodaj-utakmicu", method="POST")
+            .form-control 
+                label(for="id") Skupina 
+                input(type="text", name="id", id="id") 
+                label(for="tim1") Tim1
+                input(type="text", name="tim1", id="tim1")
+                label(for="rezultat1") bodovi
+                input(type="number", name="rezultat1", id="rezultat1")
+                label(for="tim2") Tim2 
+                input(type="text", name="tim2", id="tim2")
+                label(for="rezultat2") bodovi
+                input(type="number", name="rezultat2", id="rezultat2")
+                label(for="tim3") Tim3 
+                input(type="text", name="tim3", id="tim3")
+                label(for="rezultat3") bodovi
+                input(type="number", name="rezultat3", id="rezultat3")
+                label(for="tim4") Tim4
+                input(type="text", name="tim4", id="tim4")
+                label(for="rezultat4") bodovi
+                input(type="number", name="rezultat4", id="rezultat4")
+
+            button.btn(type="submit") Komentiraj 

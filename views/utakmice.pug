@@ -1,0 +1,31 @@
+html
+    head 
+        title  Liga prvaka
+    body 
+        table 
+            tr
+                th Skupina
+                th Prvi tim 
+                th bodovi 
+                th Drugi tim 
+                th bodovi 
+                th Treći tim 
+                th bodovi 
+                th Četvrti tim 
+                th bodovi
+                th
+            tbody 
+                each utakmica in utakmice
+                    tr
+                        td #{utakmica.id}
+                        td #{utakmica.tim1}
+                        td #{utakmica.rezultat1} 
+                        td #{utakmica.tim2}
+                        td #{utakmica.rezultat2}
+                        td #{utakmica.tim3}
+                        td #{utakmica.rezultat3}
+                        td #{utakmica.tim4}
+                        td #{utakmica.rezultat4}
+        div 
+            li: a(href='/komentari') Vidi komentare
+            li: a(href='/utakmice/dodaj-utakmicu') Dodaj utakmicu

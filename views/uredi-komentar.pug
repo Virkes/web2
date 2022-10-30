@@ -1,0 +1,11 @@
+html 
+    head 
+        title Uredi komentar 
+    body 
+        form.komentar-form(action="/komentari/uredi-komentar/", method="PUT")
+            .form-control 
+                label(for="komentar") Komentar 
+                input(type="text", name="komentar", id="komentar")
+                input(type="hidden", name="komentarId", id="komentarId")
+
+            button.btn(type="submit") Komentiraj 

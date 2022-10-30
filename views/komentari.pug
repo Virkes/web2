@@ -1,0 +1,25 @@
+html 
+    head 
+        title Komentari kola 
+    body 
+        table 
+            tr 
+                th Komentar 
+                th Autor 
+                th
+                th
+            tbody 
+                each komentar in komentari
+                    tr 
+                        td #{komentar.komentar}
+                        td #{komentar.komentator}
+                        td 
+                            form(action="/komentari/uredi-komentar", method='PUT')
+                                input(type="hidden", name='kometar', value='#{komentar.id}')
+                                input(type="submit", value='Update') 
+                        td 
+                            form(action="/komentari/delete", method='DELETE')
+                                input(type="hidden", name='komentar', value='#{komentar.id}')
+                                input(type="submit", value='Delete') 
+        div 
+            li: a(href='/komentari/dodaj-komentar') Dodaj komentar

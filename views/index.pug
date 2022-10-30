@@ -1,0 +1,13 @@
+html
+    head 
+        title  Liga prvaka
+    body 
+        if isAuthenticated
+            li: a(href='/logout') Logout
+        else 
+            li: a(href='/login') Log In
+
+        h1 You are #{loggedIn}
+        ul 
+            li: a(href='/', title='Home') Home 
+            li: a(href='/utakmice') Pregled utakmica
