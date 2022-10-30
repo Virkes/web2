@@ -11,12 +11,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 const externalUrl = process.env.RENDER_EXTERNAL_URL;
-const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 4080;
 
 const config = {
   authRequired: false,
   auth0Logout: true,
-  baseURL: externalUrl || `http://localhost:${port}`,
+  baseURL: externalUrl || `https://localhost:${port}`,
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
   secret: process.env.SECRET,
@@ -39,9 +39,13 @@ if (externalUrl) {
   });
 }
 else {
-  app.listen(port, () =>{
-    console.log(`listening on port ${port}`);
-  });
+  https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+    }, app)
+    .listen(port, function () {
+    console.log(`Server running at https://localhost:${port}/`);
+    });
 }
 
 app.get('/', (req, res) => {
