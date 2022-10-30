@@ -11,7 +11,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 const externalUrl = process.env.RENDER_EXTERNAL_URL;
-const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 4080;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 const config = {
   authRequired: false,
