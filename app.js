@@ -10,10 +10,13 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 4080;
+
 const config = {
   authRequired: false,
   auth0Logout: true,
-  baseURL: process.env.BASE_URL,
+  baseURL: externalUrl || `http://localhost:${port}`,
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
   secret: process.env.SECRET,
@@ -28,10 +31,18 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 3000;
-app.listen(port, () =>{
-  console.log(`listening on port ${port}`);
-});
+if (externalUrl) {
+  const hostname = '127.0.0.1';
+  app.listen(port, hostname, () => {
+    console.log(`Server locally running at http://${hostname}:${port}/ and from
+    outside on ${externalUrl}`);
+  });
+}
+else {
+  app.listen(port, () =>{
+    console.log(`listening on port ${port}`);
+  });
+}
 
 app.get('/', (req, res) => {
     let isAuth = req.oidc.isAuthenticated()
